@@ -69,6 +69,25 @@ impl Board {
     }
 }
 
+// Board manipulation functions
+impl Board {
+    // pub fn play(mut &self, index: u32) -> Board {
+        
+    // }
+
+    pub fn change_current(&mut self, current_player: Side) {
+        self.current_player = current_player;
+    }
+
+    pub fn change_other(&mut self, other_player: Side) {
+        self.other_player = other_player;
+    }
+
+    pub fn end_turn(&mut self) {
+        std::mem::swap(&mut self.current_player, &mut self.other_player);
+    }
+}
+
 #[derive(Debug)]
 pub enum Side {
     Player,
