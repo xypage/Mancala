@@ -5,9 +5,9 @@ pub struct Board {
     pub holes: [Hole; 14]
 }
 
+// Allows you to print a board without the debugging format, you still can but it looks better this way
 impl fmt::Display for Board {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Customize so only `x` and `y` are denoted.
         write!(f, "   {:>2?} {:>2?} {:>2?} {:>2?} {:>2?} {:>2?}\n{:>2?}{:>21?}\n   {:>2?} {:>2?} {:>2?} {:>2?} {:>2?} {:>2?}", 
         self.holes[5].val(), self.holes[4].val(), self.holes[3].val(), self.holes[2].val(), self.holes[1].val(), self.holes[0].val(),
         self.holes[6].val(), self.holes[13].val(),
