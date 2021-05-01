@@ -1,6 +1,18 @@
+use std::fmt;
+
 #[derive(Debug)]
 pub struct Board {
     pub holes: [Hole; 14]
+}
+
+impl fmt::Display for Board {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Customize so only `x` and `y` are denoted.
+        write!(f, "   {:>2?} {:>2?} {:>2?} {:>2?} {:>2?} {:>2?}\n{:>2?}{:>21?}\n   {:>2?} {:>2?} {:>2?} {:>2?} {:>2?} {:>2?}", 
+        self.holes[5].val(), self.holes[4].val(), self.holes[3].val(), self.holes[2].val(), self.holes[1].val(), self.holes[0].val(),
+        self.holes[6].val(), self.holes[13].val(),
+        self.holes[7].val(), self.holes[8].val(), self.holes[9].val(), self.holes[10].val(), self.holes[11].val(), self.holes[12].val())
+    }
 }
 
 // Board setting up functions
@@ -47,6 +59,15 @@ impl Hole {
         match self {
             Hole::Row(val, _s) => *val,
             Hole::End(val, _s) => *val
+        }
+    }
+}
+
+impl fmt::Display for Hole {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Hole::Row(val, s) => write!(f, "Row piece with {} on the {:?}'s side", val, s),
+            Hole::End(val, s) => write!(f, "End piece with {} on the {:?}'s side", val, s)
         }
     }
 }
